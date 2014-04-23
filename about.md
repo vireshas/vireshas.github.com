@@ -3,28 +3,21 @@ layout: page
 title: About
 ---
 
+Hey, I am Viresh A S - A Software Engineer living in Bangalore. I am vireshas on most of the services.
+
+I am very proud of my following opensource projects.
+
 <p class="message">
-  Hey there! This page is included as an example. Feel free to customize it for your own use upon downloading. Carry on!
+  <a href="https://rubygems.org/gems/redi2casa"> Redi2casa</a>: 
+  A Ruby gem which provides Redis datastructures using Cassandra.</br>
+  10k+ downloads from rubygems.org.
 </p>
 
-In the novel, *The Strange Case of Dr. Jeykll and Mr. Hyde*, Mr. Poole is Dr. Jekyll's virtuous and loyal butler. Similarly, Poole is an upstanding and effective butler that helps you build Jekyll themes. It's made by [@mdo](https://twitter.com/mdo).
+<p class="message">
+  <a href="https://github.com/vireshas/mantle"> Mantle</a>: 
+  A go wrapper around NoSQL databases.
+</p>
 
-There are currently two themes built on Poole:
-
-* [Hyde](http://hyde.getpoole.com)
-* [Lanyon](http://lanyon.getpoole.com)
-
-Learn more and contribute on [GitHub](https://github.com/poole).
-
-## Setup
-
-Some fun facts about the setup of this project include:
-
-* Built for [Jekyll](http://jekyllrb.com)
-* Developed on GitHub and hosted for free on [GitHub Pages](https://pages.github.com)
-* Coded with [Sublime Text 2](http://sublimetext.com), an amazing code editor
-* Designed and developed while listening to music like [Blood Bros Trilogy](https://soundcloud.com/maddecent/sets/blood-bros-series)
-
-Have questions or suggestions? Feel free to [open an issue on GitHub](https://github.com/poole/issues/new) or [ask me on Twitter](https://twitter.com/mdo).
+I maintain few other opensource projects here [GitHub](https://github.com/vireshas).
 
 Thanks for reading!

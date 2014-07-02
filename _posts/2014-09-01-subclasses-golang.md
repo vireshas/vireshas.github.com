@@ -1,3 +1,9 @@
+---
+layout: post
+title: "Inheritance in golang"
+tagline: 'golang inheritance, subclass golang'
+---
+
         package main
 
         import (

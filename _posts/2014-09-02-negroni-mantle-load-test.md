@@ -1,3 +1,9 @@
+---
+layout: post
+title: "Benchmarking custom web-framework"
+tagline: 'negroni db redis'
+---
+
 Chunk response, 4 Redis reads, 10 MySQL reads, 1 text  
 Throughput of 780 to 795 for GOMAXPROCS = 2,3 or 4 and it was 520 for GOMAXPROCS = 1  
         

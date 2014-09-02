@@ -1,14 +1,14 @@
 # Dependencies
 markdown:         redcarpet
-pygments:         true
+highlighter:         true
 
 # Permalinks
 permalink:        pretty
 
 # Setup
 title:            Viresh
-tagline:          'A S'
-description:      'Software Engineer. <a href="https://github.com/vireshas" target="_blank">Github</a>, <a href="https://twitter.com/vireshas" target="_blank">Twitter</a>'
+tagline:          'S'
+description:      'Software Engineer. <a href="https://github.com/vireshas" target="_blank">@Github</a>, <a href="https://twitter.com/vireshas" target="_blank">@twitter</a>'
 url:              https://vireshas.github.io
 baseurl:          /
 
@@ -16,7 +16,7 @@ author:
   name:           'Viresh A S'
   url:            https://twitter.com/vireshas
 
-paginate:         5
+paginate:         1
 
 github:
   repo:           https://github.com/vireshas/vireshas.github.com

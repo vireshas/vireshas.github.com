@@ -4,7 +4,7 @@ title: "Using Mysql and Redis with our webapp"
 tagline: 'golang webframework, REST api in golang, mysql golang, redis golang'
 ---
 
-We just created a sample hello world app in our [previous](/2014/09/19/yet_another_golang_webframework/) blog. Lets know invoke some Mysql and Redis calls.  
+We just created a sample app in our [previous](/2014/09/19/yet_another_golang_webframework/) blog. Let us now make some Mysql and Redis calls.  
 
 This is your new main.go  
 

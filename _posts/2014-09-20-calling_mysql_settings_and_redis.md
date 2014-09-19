@@ -7,7 +7,7 @@ tagline: 'golang webframework, REST api in golang, mysql golang, redis golang'
 We just created a sample app in our [previous](/2014/09/19/yet_another_golang_webframework/) blog. Let us now make some Mysql and Redis calls.  
 
 This is your new main.go  
-
+   ```go
         package main
 
         import (
@@ -33,11 +33,12 @@ This is your new main.go
                 n.UseHandler(mux)
                 n.Run(":3000")
         }
-
+   ```
 
 Few more files are goes in  src/router
+
 1. src/router/mysql.go <- this talks to mysql  
-   ```golang
+   ```go
         package router
         
         import (
@@ -60,7 +61,7 @@ Few more files are goes in  src/router
    ```   
 
 1. src/router/redis.go <- using Redis  
- 
+   ```go
         package router
 
         import (
@@ -74,7 +75,7 @@ Few more files are goes in  src/router
                 value := connection.Get("key")
                 fmt.Fprintln(rw, value)
         }
-
+   ```
 
 >       mkdir src/settings  
 >       cp src/github.com/vireshas/t-settings/config.json src/settings/   

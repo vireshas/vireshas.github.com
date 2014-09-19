@@ -55,5 +55,4 @@ create a file "greet.go" and add these lines
 
 In another terminal hit "curl localhost:3000"   
 
-You can also talk to MySQL and other NoSQL dbs using this framework. Will be posting those blogs in near future.  
-
+[Calling Mysql and Redis with this framework](/2014/09/20/calling_mysql_settings_and_redis/)

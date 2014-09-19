@@ -35,17 +35,17 @@ This is your new main.go
         }
 
 
-Few more files are goes in  src/router  
+Few more files are goes in  src/router
 1. src/router/mysql.go <- this talks to mysql  
-
+   ```golang
         package router
-
+        
         import (
                 "fmt"
                 "github.com/vireshas/t-coredb"
                 "net/http"
         )
-
+        
         func MysqlCall(rw http.ResponseWriter, r *http.Request) {
                 mysqldb := db.GetMysqlClientFor("m1")
                 var msg string
@@ -57,8 +57,9 @@ Few more files are goes in  src/router
                         fmt.Fprintln(rw, msg)
                 }
         }
+   ```   
 
-2. src/router/redis.go <- using Redis  
+1. src/router/redis.go <- using Redis  
  
         package router
 

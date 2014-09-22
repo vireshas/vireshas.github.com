@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: default
 title: "Using Mysql and Redis with our webapp"
 tagline: 'golang webframework, REST api in golang, mysql golang, redis golang'
 ---
@@ -7,79 +7,83 @@ tagline: 'golang webframework, REST api in golang, mysql golang, redis golang'
 We just created a sample app in our [previous](/2014/09/19/yet_another_golang_webframework/) blog. Let us now make some Mysql and Redis calls.  
 
 This is your new main.go  
-   ```go
-        package main
+{% highlight go %}
+package main
 
-        import (
-                "github.com/codegangsta/negroni"
-                "github.com/vireshas/t-settings"
-                "net/http"
-                "router"
-        )
+import (
+        "github.com/codegangsta/negroni"
+        "github.com/vireshas/t-settings"
+        "net/http"
+        "router"
+)
 
-        //configure before starting server
-        func configure(rw http.ResponseWriter, r *http.Request, next http.HandlerFunc) {
-                settings.Configure("src/settings/config.json")
-                next(rw, r)
+//configure before starting server
+func configure(rw http.ResponseWriter, r *http.Request, next http.HandlerFunc) {
+        settings.Configure("src/settings/config.json")
+        next(rw, r)
+}
+
+func main() {
+        mux := http.NewServeMux()
+        mux.HandleFunc("/", router.Greet)
+        mux.HandleFunc("/mysql", router.MysqlCall)
+        mux.HandleFunc("/redis", router.RedisCall)
+        n := negroni.Classic()
+        n.Use(negroni.HandlerFunc(configure))
+        n.UseHandler(mux)
+        n.Run(":3000")
+}
+{% endhighlight %}
+
+Few more files are goes in  src/router  
+<ol>
+<li>
+src/router/mysql.go <- this talks to mysql 
+{% highlight go %}
+package router
+
+import (
+        "fmt"
+        "github.com/vireshas/t-coredb"
+        "net/http"
+)
+
+func MysqlCall(rw http.ResponseWriter, r *http.Request) {
+        mysqldb := db.GetMysqlClientFor("m1")
+        var msg string
+        err := mysqldb.QueryRow("SELECT value FROM bm WHERE id=?", 1).Scan(&msg)
+        if err != nil {
+                fmt.Fprintln(rw, "Database Error!")
+                fmt.Fprintln(rw, err)
+        } else {
+                fmt.Fprintln(rw, msg)
         }
+}
+{% endhighlight %}
+</li>
 
-        func main() {
-                mux := http.NewServeMux()
-                mux.HandleFunc("/", router.Greet)
-                mux.HandleFunc("/mysql", router.MysqlCall)
-                mux.HandleFunc("/redis", router.RedisCall)
-                n := negroni.Classic()
-                n.Use(negroni.HandlerFunc(configure))
-                n.UseHandler(mux)
-                n.Run(":3000")
-        }
-   ```
+<li>
+src/router/redis.go <- using Redis  
+{% highlight go %}  
+package router
 
-Few more files are goes in  src/router
+import (
+        "fmt"
+        "github.com/vireshas/t-coredb"
+        "net/http"
+)
 
-1. src/router/mysql.go <- this talks to mysql  
-   ```go
-        package router
-        
-        import (
-                "fmt"
-                "github.com/vireshas/t-coredb"
-                "net/http"
-        )
-        
-        func MysqlCall(rw http.ResponseWriter, r *http.Request) {
-                mysqldb := db.GetMysqlClientFor("m1")
-                var msg string
-                err := mysqldb.QueryRow("SELECT value FROM bm WHERE id=?", 1).Scan(&msg)
-                if err != nil {
-                        fmt.Fprintln(rw, "Database Error!")
-                        fmt.Fprintln(rw, err)
-                } else {
-                        fmt.Fprintln(rw, msg)
-                }
-        }
-   ```   
+func RedisCall(rw http.ResponseWriter, r *http.Request) {
+        connection := db.GetRedisClientFor("r1")
+        value := connection.Get("key")
+        fmt.Fprintln(rw, value)
+}
+{% endhighlight %}
+</li>
 
-1. src/router/redis.go <- using Redis  
-   ```go
-        package router
-
-        import (
-                "fmt"
-                "github.com/vireshas/t-coredb"
-                "net/http"
-        )
-
-        func RedisCall(rw http.ResponseWriter, r *http.Request) {
-                connection := db.GetRedisClientFor("r1")
-                value := connection.Get("key")
-                fmt.Fprintln(rw, value)
-        }
-   ```
-
->       mkdir src/settings  
->       cp src/github.com/vireshas/t-settings/config.json src/settings/   
->       go run main.go 
+>mkdir src/settings  
+>cp src/github.com/vireshas/t-settings/config.json src/settings/   
+>go run main.go 
 
 Fire another terminal and hit these urls  
 localhost:3000/  
